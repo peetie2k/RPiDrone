@@ -1,0 +1,53 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:background="#0099cc"
+    tools:context="com.peetie.rpidrone.gstreamer.VideoPlaybackFull">
+
+    <!-- The primary full-screen view. This can be replaced with whatever view
+         is needed to present your content, e.g. VideoView, SurfaceView,
+         TextureView, etc. -->
+
+    <!-- This FrameLayout insets its children based on system windows using
+         android:fitsSystemWindows. -->
+    <FrameLayout android:layout_width="match_parent" android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        android:id="@+id/frame_layout">
+
+        <LinearLayout android:id="@+id/fullscreen_content_controls" style="?metaButtonBarStyle"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:background="@color/black_overlay" android:orientation="horizontal"
+            tools:ignore="UselessParent"
+            android:visibility="invisible"
+            android:transitionGroup="false">
+
+        </LinearLayout>
+
+
+        <view
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            class="com.peetie.rpidrone.HUDOverlayView"
+            android:id="@+id/hud_overlay"
+            android:layout_gravity="center" />
+
+        <com.peetie.rpidrone.gstreamer.GStreamerSurfaceView
+            android:layout_width="wrap_content"
+            android:layout_height="650dp"
+            android:id="@+id/surface_video"
+            android:layout_gravity="center"
+            tools:context="com.peetie.rpidrone.gstreamer.VideoPlaybackFull"
+            android:keepScreenOn="true"
+            android:visibility="visible" />
+
+        <TextView
+            android:layout_width="321dp"
+            android:layout_height="188dp"
+            android:text="message"
+            android:id="@+id/textview_message"
+            android:layout_gravity="center"
+            android:gravity="center" />
+
+    </FrameLayout>
+
+</FrameLayout>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">RPiDrone</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="IP_Address">Drone IP Address</string>
+    <string name="Port">Drone Port</string>
+    <string name="save">Save</string>
+    <string name="Start_Stream">Start Stream</string>
+    <string name="stopStream">Stop Stream</string>
+    <string name="button_play">Play</string>
+    <string name="button_stop">Stop</string>
+    <string name="button_select">Select</string>
+    <string name="button_cancel">Cancel</string>
+
+    <string name="title_activity_video_playback_full">VideoPlaybackFull</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+
+    <string name="title_activity_video_view">VideoViewActivity</string>
+
+</resources>
