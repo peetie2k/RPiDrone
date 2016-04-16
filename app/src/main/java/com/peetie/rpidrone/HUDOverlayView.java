@@ -31,7 +31,7 @@ public class HUDOverlayView extends SurfaceView implements Callback {
 
 
     //Hud Config Variables====================================
-    //General
+    //General.
 
     private int sidePadding = 300;
     private int topPadding = 100;
