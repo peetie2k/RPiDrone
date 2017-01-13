@@ -19,5 +19,7 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
 
     <string name="title_activity_video_view">VideoViewActivity</string>
+    <string name="Frequency">Frequency</string>
+    <string name="Mode">Mode</string>
 
 </resources>

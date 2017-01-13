@@ -487,7 +487,7 @@ void process_packet(monitor_interface_t *interface, block_buffer_t *block_buffer
 
 
 
-void befiReceiver(int param_port,int param_data_packets_per_block, int param_fec_packets_per_block, int param_block_buffers, int param_packet_length  ){
+void wbc_befiReceiver(int param_port,int param_data_packets_per_block, int param_fec_packets_per_block, int param_block_buffers, int param_packet_length, char *wlan_devices[], int num_wlan_devices  ){
 
     monitor_interface_t interfaces[MAX_PENUMBRA_INTERFACES];
 	int num_interfaces = 0;
@@ -496,11 +496,9 @@ void befiReceiver(int param_port,int param_data_packets_per_block, int param_fec
     block_buffer_t *block_buffer_list;
     fec_init();
 
-    	int x = optind;
-    	while(x < argc && num_interfaces < MAX_PENUMBRA_INTERFACES) {
-    		open_and_configure_interface(argv[x], param_port, interfaces + num_interfaces);
+    	for(x = 0; x < num_wlan_devices ; x++) {
+    		open_and_configure_interface(wlan_devices[x], param_port, interfaces + num_interfaces);
     		++num_interfaces;
-    		++x;
     	}
 
 
@@ -542,6 +540,38 @@ void befiReceiver(int param_port,int param_data_packets_per_block, int param_fec
 }
 
 
+static char* wb_version_string( ){
+ return '0.4';
+}
+
+
+
+static JNINativeMethod native_methods[] = {
+//nativeBefiReceiver(int param_port,int param_data_packets_per_block, int param_fec_packets_per_block, int param_block_buffers, int param_packet_length, String[] wlan_devices, int num_wlan_devices );
+  { "nativeBefiReceiver", "(I;I;I;I;I;Ljava/lang/String;I)V ", (void *) wbc_befi_receiver},
+  { "nativeClassInit", "()Z", (void *) gst_native_class_init}
+};
+
+
+/* Library initializer */
+jint JNI_OnLoad(JavaVM *vm, void *reserved) {
+  JNIEnv *env = NULL;
+
+  java_vm = vm;
+
+  if ((*vm).GetEnv( (void**) &env, JNI_VERSION_1_4) != JNI_OK) {
+    __android_log_print (ANDROID_LOG_ERROR, "Befi Receiver", "Could not retrieve JNIEnv");
+    return 0;
+  }
+  jclass klass = (*env).FindClass ( "com/peetie/rpidrone/wifibroadcast/wbc_receiver");
+  (*env).RegisterNatives ( klass, native_methods, G_N_ELEMENTS(native_methods));
+
+  pthread_key_create (&current_jni_env, detach_current_thread);
+  char *version_utf8 = wb_version_string();
+  __android_log_print (ANDROID_LOG_VERBOSE, "WBC", "WBC VERSION: %s",version_utf8);
+  g_free (version_utf8);;
+  return JNI_VERSION_1_4;
+}
 
 
 

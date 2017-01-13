@@ -18,11 +18,10 @@
         android:layout_height="wrap_content"
         android:text="@string/save"
         android:id="@+id/btnSave"
-        android:layout_marginTop="22dp"
-        android:layout_below="@+id/txtPort"
-        android:layout_alignEnd="@+id/txtPort"
-        android:layout_alignParentStart="false"
-        android:onClick="onButtonSaveClick" />
+        android:onClick="onButtonSaveClick"
+        android:layout_above="@+id/btnStopStream"
+        android:layout_alignEnd="@+id/btnStopStream"
+        android:layout_marginBottom="79dp" />
 
     <TextView
         android:text="@string/Port"
@@ -71,5 +70,63 @@
         android:layout_alignParentBottom="true"
         android:layout_alignEnd="@+id/txtPort"
         android:nestedScrollingEnabled="false" />
+
+    <TextView
+        android:text="@string/Frequency"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hapticFeedbackEnabled="true"
+        android:layout_alignBottom="@+id/txtFrequency"
+        android:layout_alignParentStart="true"
+        android:id="@+id/lblFrequency" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:id="@+id/txtFrequency"
+        android:inputType="number"
+        android:layout_alignStart="@+id/txtPort"
+        android:layout_below="@+id/txtPort" />
+
+    <TextView
+        android:text="@string/Mode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hapticFeedbackEnabled="true"
+        android:id="@+id/lblMode"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toEndOf="@+id/lblIpAddress"
+        android:layout_alignTop="@+id/lblMode"
+        android:layout_above="@+id/btnSave"
+        android:id="@+id/rgMode"
+        android:clickable="true">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="WLAN"
+            android:id="@+id/rbWLAN"
+            android:layout_above="@+id/btnSave"
+            android:layout_toEndOf="@+id/lblFrequency"
+            android:clickable="true"
+            android:enabled="true" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="WiFiBroadcast"
+            android:id="@+id/rbBroadcast"
+            android:layout_alignTop="@+id/rbWLAN"
+            android:layout_toEndOf="@+id/rbWLAN"
+            android:clickable="true"
+            android:checked="false"
+            android:enabled="true" />
+    </RadioGroup>
 
 </RelativeLayout>

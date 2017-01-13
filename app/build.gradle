@@ -50,6 +50,9 @@ tasks.withType(JavaCompile) {
     compileTask -> compileTask.dependsOn ndkLibsToJar
 }
 
+
+
+
 // Packs ndk into JAR
 task ndkLibsToJar(type: Zip, dependsOn: 'ndkBuild', description: 'Create a JAR of the native libs') {
     destinationDir new File(buildDir, 'libs')
